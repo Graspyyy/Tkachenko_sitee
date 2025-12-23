@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SportGear — спортивне обладнання</title>
+  <meta name="description" content="Спортивне обладнання: кардіо, силове, фітнес, аксесуари. Каталог, поради, кошик." />
+
+  <style>
+    :root{
+      /* Синя кольорова схема */
+      --bg:#07132a;
+      --panel:#0b1b35;
+      --card:#0f2440;
+      --text:#e6f2ff;
+      --muted:#9fb7d9;
+      --line:rgba(255,255,255,.07);
+      --brand:#60a5ff;
+      --brand2:#79b8ff;
+      --danger:#ff6e6e;
+      --shadow: 0 12px 35px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:14px;
+      --max:1100px;
+      --focus: 0 0 0 3px rgba(96,165,255,.18);
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 10% 0%, rgba(96,165,255,.14), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(121,184,255,.08), transparent 60%),
+        linear-gradient(180deg, #031028, var(--bg));
+    }
+    a{color:inherit; text-decoration:none}
+    button, input, select, textarea{font-family:inherit}
+    .container{max-width:var(--max); margin:0 auto; padding:0 16px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,19,42,.63);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:12px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.3px;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.25), transparent 60%),
+        linear-gradient(135deg, rgba(96,165,255,.95), rgba(121,184,255,.95));
+      box-shadow:0 10px 24px rgba(96,165,255,.12);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-30%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.20), transparent);
+      transform: rotate(20deg);
+      animation: shine 4.2s infinite;
+    }
+    @keyframes shine{
+      0%{transform: translateX(-40%) rotate(20deg)}
+      40%{transform: translateX(40%) rotate(20deg)}
+      100%{transform: translateX(40%) rotate(20deg)}
+    }
+
+    nav{
+      display:flex; align-items:center; gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .navlink{
+      padding:9px 12px;
+      border:1px solid transparent;
+      border-radius:999px;
+      color:var(--muted);
+      font-weight:600;
+    }
+    .navlink:hover{border-color:var(--line); color:var(--text)}
+    .navbtn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:700;
+      cursor:pointer;
+    }
+    .navbtn:hover{background: rgba(255,255,255,.08)}
+    .badge{
+      min-width:22px; height:22px; padding:0 6px;
+      border-radius:999px;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:12px;
+      background: rgba(96,165,255,.14);
+      border:1px solid rgba(96,165,255,.28);
+      color:var(--text);
+    }
+
+    /* Hero */
+    .hero{
+      padding:38px 0 14px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .heroCard{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .heroCard::before{
+      content:"";
+      position:absolute; inset:-1px;
+      background:
+        radial-gradient(420px 240px at 10% 10%, rgba(96,165,255,.14), transparent 60%),
+        radial-gradient(420px 240px at 90% 30%, rgba(121,184,255,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .heroInner{position:relative; z-index:2}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px;
+      background: rgba(96,165,255,.10);
+      border:1px solid rgba(96,165,255,.22);
+      color: var(--text);
+      font-weight:700; font-size:13px;
+    }
+    .hero h1{margin:14px 0 10px; font-size:34px; line-height:1.12}
+    .hero p{margin:0 0 16px; color:var(--muted); font-size:15.5px; line-height:1.55; max-width:62ch}
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      padding:11px 14px;
+      border-radius:12px;
+      font-weight:800;
+      cursor:pointer;
+      display:inline-flex; align-items:center; gap:9px;
+    }
+    .btn:hover{background: rgba(255,255,255,.08)}
+    .btnPrimary{
+      border-color: rgba(96,165,255,.30);
+      background: linear-gradient(135deg, rgba(96,165,255,.22), rgba(121,184,255,.12));
+    }
+    .btnPrimary:hover{
+      background: linear-gradient(135deg, rgba(96,165,255,.30), rgba(121,184,255,.18));
+    }
+    .stats{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+    }
+    .stat{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      background: rgba(255,255,255,.02);
+    }
+    .stat .n{font-size:18px; font-weight:900}
+    .stat .t{color:var(--muted); font-size:12.5px; margin-top:2px}
+
+    .tipsCard{
+      display:flex; flex-direction:column; gap:12px;
+    }
+    .tip{
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      padding:12px;
+      background: rgba(255,255,255,.02);
+    }
+    .tip b{display:block; margin-bottom:4px}
+    .tip span{color:var(--muted); font-size:13px; line-height:1.45}
+
+    /* Sections */
+    section{padding:18px 0}
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:14px; flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+    .sectionHead h2{margin:0; font-size:22px}
+    .sub{color:var(--muted); margin:6px 0 0; font-size:13.5px}
+
+    /* Filters */
+    .filters{
+      display:grid;
+      grid-template-columns: 1.2fr .7fr .6fr .5fr;
+      gap:10px;
+      align-items:end;
+    }
+    .field label{display:block; font-size:12.5px; color:var(--muted); margin-bottom:6px}
+    .control{
+      width:100%;
+      padding:11px 12px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color:var(--text);
+      outline:none;
+    }
+    .control:focus{box-shadow:var(--focus); border-color:rgba(96,165,255,.35)}
+    .chipRow{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      color:var(--muted);
+      cursor:pointer;
+      font-weight:700;
+      font-size:13px;
+      user-select:none;
+    }
+    .chip[aria-pressed="true"]{
+      color:var(--text);
+      border-color: rgba(96,165,255,.35);
+      background: rgba(96,165,255,.12);
+    }
+
+    /* Catalog */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: rgba(255,255,255,.02);
+      overflow:hidden;
+      box-shadow: 0 10px 26px rgba(0,0,0,.25);
+      display:flex; flex-direction:column;
+      min-height: 290px;
+    }
+    .thumb{
+      height:140px;
+      background:
+        radial-gradient(280px 180px at 20% 30%, rgba(96,165,255,.12), transparent 60%),
+        radial-gradient(280px 180px at 80% 20%, rgba(121,184,255,.08), transparent 55%),
+        linear-gradient(135deg, rgba(255,255,255,.02), rgba(255,255,255,.005));
+      border-bottom:1px solid var(--line);
+      position:relative;
+    }
+    .thumb .tag{
+      position:absolute; left:12px; top:12px;
+      padding:6px 9px; border-radius:999px;
+      font-size:12px; font-weight:800;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.22);
+    }
+    .thumb .tag.hot{border-color: rgba(96,165,255,.35); background: rgba(96,165,255,.12)}
+    .thumb .tag.new{border-color: rgba(121,184,255,.35); background: rgba(121,184,255,.10)}
+    .content{padding:14px 14px 12px; display:flex; flex-direction:column; gap:8px; flex:1}
+    .titleRow{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+    .content h3{margin:0; font-size:16px; line-height:1.25}
+    .meta{display:flex; gap:8px; flex-wrap:wrap}
+    .pill{
+      padding:5px 8px;
+      border-radius:999px;
+      font-size:12px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      background: rgba(255,255,255,.01);
+    }
+    .desc{color:var(--muted); font-size:13px; line-height:1.45; margin-top:2px}
+    .priceRow{
+      margin-top:auto;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px; flex-wrap:wrap;
+      padding-top:8px;
+      border-top:1px dashed rgba(255,255,255,.12);
+    }
+    .price{font-weight:900; font-size:17px}
+    .actions{display:flex; gap:8px; flex-wrap:wrap}
+    .smallBtn{
+      padding:9px 10px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:800;
+      font-size:13px;
+    }
+    .smallBtn:hover{background: rgba(255,255,255,.08)}
+    .smallBtn.primary{
+      border-color: rgba(96,165,255,.35);
+      background: rgba(96,165,255,.12);
+    }
+    .smallBtn.primary:hover{background: rgba(96,165,255,.18)}
+
+    .empty{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:16px;
+      color:var(--muted);
+      background: rgba(255,255,255,.01);
+    }
+
+    /* Guide */
+    .guide{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .guideItem{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: rgba(255,255,255,.01);
+      padding:14px;
+    }
+    .guideItem h3{margin:0 0 6px; font-size:16px}
+    .guideItem p{margin:0; color:var(--muted); line-height:1.5; font-size:13.5px}
+
+    /* Contact */
+    .formWrap{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: rgba(255,255,255,.01);
+      padding:14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .formWrap .fieldFull{grid-column:1 / -1}
+    textarea.control{min-height:110px; resize:vertical}
+
+    footer{
+      padding:20px 0 26px;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      margin-top:18px;
+    }
+    .footGrid{
+      display:flex; justify-content:space-between; align-items:flex-start;
+      gap:16px; flex-wrap:wrap;
+    }
+
+    /* Modal & Drawer */
+    .overlay{
+      position:fixed; inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      padding:16px;
+      z-index:100;
+    }
+    .overlay[aria-hidden="false"]{display:flex}
+    .modal{
+      width:min(920px, 100%);
+      border:1px solid var(--line);
+      border-radius:22px;
+      background: rgba(11,27,46,.96);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modalHead{
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+    }
+    .modalHead b{font-size:14px}
+    .closeBtn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      border-radius:12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:900;
+    }
+    .closeBtn:hover{background: rgba(255,255,255,.08)}
+    .modalBody{
+      display:grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap:12px;
+      padding:14px;
+    }
+    .modalPic{
+      border:1px solid var(--line);
+      border-radius:18px;
+      min-height:220px;
+      background:
+        radial-gradient(320px 220px at 30% 30%, rgba(96,165,255,.12), transparent 60%),
+        radial-gradient(320px 220px at 70% 20%, rgba(121,184,255,.08), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+    }
+    .modalBody h3{margin:0 0 6px}
+    .modalBody p{margin:0 0 10px; color:var(--muted); line-height:1.55}
+    .specs{
+      display:flex; gap:8px; flex-wrap:wrap;
+      margin:10px 0 12px;
+    }
+    .specs .pill{font-size:12.5px}
+    .modalFoot{
+      padding:12px 14px;
+      border-top:1px solid var(--line);
+      display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+    }
+
+    /* Cart drawer */
+    .drawer{
+      position:fixed;
+      top:0; right:0;
+      width:min(420px, 92vw);
+      height:100%;
+      background: rgba(11,27,46,.97);
+      backdrop-filter: blur(10px);
+      border-left:1px solid var(--line);
+      transform: translateX(110%);
+      transition: transform .25s ease;
+      z-index:120;
+      display:flex; flex-direction:column;
+      box-shadow: var(--shadow);
+    }
+    .drawer[aria-hidden="false"]{transform: translateX(0)}
+    .drawerHead{
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+    }
+    .drawerHead b{font-size:14px}
+    .drawerBody{padding:12px 14px; overflow:auto; flex:1; display:flex; flex-direction:column; gap:10px}
+    .cartItem{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:10px;
+      background: rgba(255,255,255,.01);
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:8px;
+      align-items:start;
+    }
+    .cartItem h4{margin:0; font-size:14px}
+    .cartItem .small{color:var(--muted); font-size:12.5px; margin-top:3px}
+    .qtyRow{display:flex; gap:6px; align-items:center; justify-content:flex-end; flex-wrap:wrap}
+    .qtyBtn{
+      width:34px; height:34px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      cursor:pointer;
+      font-weight:900;
+    }
+    .qtyBtn:hover{background: rgba(255,255,255,.08)}
+    .removeBtn{
+      border-color: rgba(255,110,110,.35);
+      background: rgba(255,110,110,.12);
+    }
+    .drawerFoot{
+      border-top:1px solid var(--line);
+      padding:12px 14px;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .totalRow{
+      display:flex; justify-content:space-between; align-items:center;
+      font-weight:900;
+    }
+    .hint{color:var(--muted); font-size:12.5px; line-height:1.45}
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns: 1fr}
+      .filters{grid-template-columns: 1fr 1fr; align-items:stretch}
+      .grid{grid-template-columns: 1fr 1fr}
+      .guide{grid-template-columns: 1fr}
+      .formWrap{grid-template-columns: 1fr}
+      .modalBody{grid-template-columns: 1fr}
+      .stats{grid-template-columns: 1fr 1fr 1fr}
+    }
+    @media (max-width: 520px){
+      .grid{grid-template-columns: 1fr}
+      .stats{grid-template-columns: 1fr}
+      nav{justify-content:flex-start}
+      .hero h1{font-size:28px}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <div class="topbar">
+      <a class="brand" href="#top" aria-label="SportGear — на головну">
+        <span class="logo" aria-hidden="true"></span>
+        <span>SportGear</span>
+      </a>
+
+      <nav aria-label="Навігація">
+        <a class="navlink" href="#catalog">Каталог</a>
+        <a class="navlink" href="#guide">Поради</a>
+        <a class="navlink" href="#contact">Контакти</a>
+        <button class="navbtn" id="openCartBtn" type="button" aria-haspopup="dialog">
+          Кошик <span class="badge" id="cartCount">0</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div class="heroGrid">
+        <div class="heroCard">
+          <div class="heroInner">
+            <span class="kicker">Спорт • обладнання для тренувань</span>
+            <h1>Спортивне обладнання для залу, дому та вулиці</h1>
+            <p>
+              Обери обладнання: кардіо, силове, фітнес-аксесуари. На сторінці є каталог з фільтрами, швидкий перегляд, кошик і форма заявки.
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn btnPrimary" href="#catalog">Перейти в каталог</a>
+              <button class="btn" type="button" id="scrollGuideBtn">Поради для тренувань</button>
+            </div>
+
+            <div class="stats" aria-label="Переваги">
+              <div class="stat"><div class="n">20+</div><div class="t">популярних позицій</div></div>
+              <div class="stat"><div class="n">Демо</div><div class="t">кошик збережеться</div></div>
+              <div class="stat"><div class="n">4</div><div class="t">категорії</div></div>
+            </div>
+
+            <!-- Дані студента (на головній сторінці) -->
+            <div class="tip" style="margin-top:14px;">
+              <b>Дані студента</b>
+              <div style="color:var(--muted); margin-top:6px; font-size:14px; line-height:1.4">
+                Ткаченко Юрій Михайлович<br/>
+                Email: <a href="mailto:y.tkachenko_frhtb_12_22_b_d@knute.edu.ua" style="color:var(--brand2) ; text-decoration:underline;">y.tkachenko_frhtb_12_22_b_d@knute.edu.ua</a><br/>
+                Група: 12, 4 курс<br/>
+                Факультет: Технологій та бізнесу
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="heroCard tipsCard">
+          <div class="tip">
+            <b>Порада 1: регулярність</b>
+            <span>Тренування 3–4 рази на тиждень дають стабільний прогрес.</span>
+          </div>
+          <div class="tip">
+            <b>Порада 2: розминка</b>
+            <span>Перед силовим тренуванням роби динамічну розминку, щоб знизити ризик травм.</span>
+          </div>
+          <div class="tip">
+            <b>Порада 3: інтенсивність</b>
+            <span>Змінюй інтенсивність і відпочинок — це допомагає уникнути плато.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <h2>Каталог обладнання</h2>
+          <p class="sub">Фільтруй за категорією, ціною та рейтингом. Додай у кошик або відкрий “швидкий перегляд”.</p>
+        </div>
+        <div class="chipRow" aria-label="Швидкі фільтри категорій">
+          <button class="chip" type="button" data-chip="all" aria-pressed="true">Усі</button>
+          <button class="chip" type="button" data-chip="Кардіо" aria-pressed="false">Кардіо</button>
+          <button class="chip" type="button" data-chip="Силове" aria-pressed="false">Силове</button>
+          <button class="chip" type="button" data-chip="Фітнес" aria-pressed="false">Фітнес</button>
+          <button class="chip" type="button" data-chip="Аксесуари" aria-pressed="false">Аксесуари</button>
+        </div>
+      </div>
+
+      <div class="filters" aria-label="Фільтри">
+        <div class="field">
+          <label for="q">Пошук</label>
+          <input class="control" id="q" type="search" placeholder="Напр.: бігова, гантелі, килимок..." />
+        </div>
+
+        <div class="field">
+          <label for="category">Категорія</label>
+          <select class="control" id="category">
+            <option value="all">Усі</option>
+            <option value="Кардіо">Кардіо</option>
+            <option value="Силове">Силове</option>
+            <option value="Фітнес">Фітнес</option>
+            <option value="Одяг">Одяг</option>
+            <option value="Аксесуари">Аксесуари</option>
+            <option value="Електроніка">Електроніка</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="maxPrice">Макс. ціна (₴)</label>
+          <input class="control" id="maxPrice" type="number" min="0" step="100" placeholder="Напр.: 4000" />
+        </div>
+
+        <div class="field">
+          <label for="minRating">Мін. рейтинг</label>
+          <select class="control" id="minRating">
+            <option value="0">Будь-який</option>
+            <option value="4">4.0+</option>
+            <option value="4.3">4.3+</option>
+            <option value="4.6">4.6+</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div id="resultMeta" class="sub" aria-live="polite"></div>
+      <div style="height:10px"></div>
+
+      <div class="grid" id="grid" aria-label="Список товарів"></div>
+
+      <div style="height:12px"></div>
+      <div id="emptyState" class="empty" hidden>
+        Нічого не знайдено. Спробуй змінити фільтри або прибрати обмеження по ціні/рейтингу.
+      </div>
+    </div>
+  </section>
+
+  <section id="guide">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <h2>Поради: тренування та обладнання</h2>
+          <p class="sub">Короткі поради, щоб тренування були ефективними і безпечними.</p>
+        </div>
+      </div>
+
+      <div class="guide">
+        <div class="guideItem">
+          <h3>Базовий набір для дому</h3>
+          <p>Гантелі/гирі, килимок для йоги, скакалка, опірні стрічки, лавка (за потреби).</p>
+        </div>
+        <div class="guideItem">
+          <h3>Кардіо</h3>
+          <p>Бігова доріжка або велотренажер — для серцево-судинної витривалості; також варто мати пульсометр.</p>
+        </div>
+        <div class="guideItem">
+          <h3>Безпека</h3>
+          <p>Правильна техніка, належне взуття, регідратація, та медична аптечка під рукою при інтенсивних тренуваннях.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <h2>Заявка / консультація</h2>
+          <p class="sub">Опиши мету тренувань — і ми допоможемо підібрати обладнання (демо-форма без відправки на сервер).</p>
+        </div>
+      </div>
+
+      <form class="formWrap" id="contactForm">
+        <div class="field">
+          <label for="name">Ім’я</label>
+          <input class="control" id="name" name="name" placeholder="Напр.: Ярик" required />
+        </div>
+        <div class="field">
+          <label for="phone">Телефон / Telegram</label>
+          <input class="control" id="phone" name="phone" placeholder="+380..." required />
+        </div>
+        <div class="field">
+          <label for="trip">Формат</label>
+          <select class="control" id="trip" name="trip">
+            <option>Домашні тренування</option>
+            <option>Зал / фітнес-клуб</option>
+            <option>Вуличні тренування</option>
+            <option>Реабілітація / легкі заняття</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="budget">Бюджет (₴)</label>
+          <input class="control" id="budget" name="budget" type="number" min="0" step="500" placeholder="Напр.: 8000" />
+        </div>
+
+        <div class="field fieldFull">
+          <label for="msg">Коментар</label>
+          <textarea class="control" id="msg" name="msg" placeholder="Мета, рівень, площа, що вже є з обладнання?"></textarea>
+        </div>
+
+        <div class="field fieldFull" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+          <button class="btn btnPrimary" type="submit">Надіслати заявку</button>
+          <button class="btn" type="button" id="clearCartBtn">Очистити кошик</button>
+          <span class="sub" id="formStatus" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footGrid">
+      <div>
+        <div class="brand" style="gap:10px">
+          <span class="logo" aria-hidden="true" style="width:32px;height:32px;border-radius:11px"></span>
+          <span>SportGear</span>
+        </div>
+        <p class="sub" style="max-width:60ch">
+          Демонстраційний сайт: каталог спортивного обладнання, фільтри, модальне вікно, кошик (LocalStorage), форма.
+        </p>
+      </div>
+      <div class="sub">
+        <div>© <span id="year"></span> SportGear</div>
+        <div style="margin-top:6px">Дані студента: Ткаченко Юрій Михайлович — y.tkachenko_frhtb_12_22_b_d@knute.edu.ua</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal: Quick view -->
+<div class="overlay" id="modalOverlay" aria-hidden="true" role="dialog" aria-label="Швидкий перегляд">
+  <div class="modal" role="document">
+    <div class="modalHead">
+      <b>Швидкий перегляд</b>
+      <button class="closeBtn" type="button" id="closeModalBtn">Закрити</button>
+    </div>
+    <div class="modalBody">
+      <div class="modalPic" aria-hidden="true"></div>
+      <div>
+        <h3 id="mTitle"></h3>
+        <div class="meta" style="margin-bottom:8px">
+          <span class="pill" id="mCategory"></span>
+          <span class="pill" id="mWeight"></span>
+          <span class="pill" id="mRating"></span>
+        </div>
+        <p id="mDesc"></p>
+        <div class="specs" id="mSpecs"></div>
+      </div>
+    </div>
+    <div class="modalFoot">
+      <div class="price" id="mPrice"></div>
+      <div class="actions">
+        <button class="smallBtn primary" type="button" id="mAddBtn">Додати в кошик</button>
+        <button class="smallBtn" type="button" id="mGoCatalogBtn">Повернутись до каталогу</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cart drawer -->
+<aside class="drawer" id="cartDrawer" aria-hidden="true" aria-label="Кошик">
+  <div class="drawerHead">
+    <b>Кошик</b>
+    <button class="closeBtn" type="button" id="closeCartBtn">Закрити</button>
+  </div>
+  <div class="drawerBody" id="cartItems"></div>
+  <div class="drawerFoot">
+    <div class="totalRow">
+      <span>Разом:</span>
+      <span id="cartTotal">0 ₴</span>
+    </div>
+    <button class="btn btnPrimary" type="button" id="checkoutBtn">Оформити (демо)</button>
+    <div class="hint">Позиції та кількість зберігаються у браузері (LocalStorage).</div>
+  </div>
+</aside>
+
+<script>
+  // ---------- Data (updated: спортивне обладнання) ----------
+  const PRODUCTS = [
+    { id: "c1", name: "Бігова доріжка HomeRun 3000", category: "Кардіо", price: 28990, rating: 4.6, weight: "54 кг", tag: "hot", desc: "Компактна бігова доріжка з регулюванням нахилу й швидкості, дисплеєм та пульсометром.", specs: ["до 18 км/год", "електричний нахил", "вбудований пульс"] },
+    { id: "c2", name: "Велотренажер SpinPro", category: "Кардіо", price: 15990, rating: 4.4, weight: "36 кг", tag: "", desc: "Стабільний велотренажер для інтервальних тренувань та довготривалих сесій.", specs: ["регулювання навантаження", "компактний"] },
+    { id: "s1", name: "Штанга 120 кг (комплект)", category: "Силове", price: 11990, rating: 4.7, weight: "45 кг", tag: "hot", desc: "Набір штанги та дисків для прогресивних силових тренувань.", specs: ["45 мм гриф", "антикорозійне покриття"] },
+    { id: "s2", name: "Гантелі регульовані 2–24 кг (пара)", category: "Силове", price: 3990, rating: 4.5, weight: "24 кг", tag: "", desc: "Регульовані гантелі для домашнього залу, швидка зміна ваги.", specs: ["регулювання ваги", "компактно"] },
+    { id: "f1", name: "Килимок для йоги ProGrip 6 мм", category: "Фітнес", price: 890, rating: 4.3, weight: "1.2 кг", tag: "new", desc: "Антислизький килимок для йоги та вправ на підлозі.", specs: ["6 мм", "антибактеріальний"] },
+    { id: "f2", name: "Резинки опору комплект (3 рівня)", category: "Фітнес", price: 490, rating: 4.2, weight: "0.2 кг", tag: "", desc: "Набір резинок для розминки, додаткового навантаження та реабілітації.", specs: ["3 рівні", "транспортна сумка"] },
+    { id: "a1", name: "Килимок для преса AbMat", category: "Аксесуари", price: 350, rating: 4.1, weight: "0.4 кг", tag: "", desc: "Підтримка попереку при вправі 'скручування'.", specs: ["компактний", "зручний"] },
+    { id: "a2", name: "Скакалка SpeedRope", category: "Аксесуари", price: 390, rating: 4.4, weight: "0.08 кг", tag: "new", desc: "Регульована скакалка для інтенсивних кардіо-тренувань.", specs: ["регульована довжина", "підшипники"] },
+    { id: "e1", name: "Фітнес-трекер MoveFit+", category: "Електроніка", price: 2690, rating: 4.5, weight: "0.03 кг", tag: "hot", desc: "Трекер активності з вимірюванням пульсу, кроків та режимами тренувань.", specs: ["пульс", "автотрекінг", "водозахист"] },
+    { id: "a3", name: "Чохол для гантелей / аксесуарів", category: "Аксесуари", price: 290, rating: 4.0, weight: "0.25 кг", tag: "", desc: "Чохол для зберігання та транспортування невеликих тренажерів і аксесуарів.", specs: ["водовідштовх.", "ремінець"] },
+    { id: "o1", name: "Кросівки для бігу RunFast", category: "Одяг", price: 3490, rating: 4.3, weight: "0.28 кг", tag: "", desc: "Легкі кросівки з амортизацією для дорожнього бігу.", specs: ["амортизація", "дихаючий верх"] },
+    { id: "f3", name: "Медбол 6 кг", category: "Фітнес", price: 1190, rating: 4.2, weight: "6 кг", tag: "", desc: "Тренування вибухової сили, кидки та скручування з вагою.", specs: ["6 кг", "текстурована поверхня"] },
+    { id: "s3", name: "Лавка тренувальна з регулюванням", category: "Силове", price: 4990, rating: 4.6, weight: "18 кг", tag: "hot", desc: "Регульована лавка для жиму та ізольованих вправ.", specs: ["регульований кут", "компактне складення"] }
+  ];
+
+  // ---------- State ----------
+  const state = {
+    q: "",
+    category: "all",
+    maxPrice: null,
+    minRating: 0,
+    chipCategory: "all",
+    modalProductId: null,
+    cart: loadCart() // {id: qty}
+  };
+
+  // ---------- Helpers ----------
+  const fmt = new Intl.NumberFormat("uk-UA");
+  const byId = (id) => document.getElementById(id);
+  const clampNum = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  };
+
+  function saveCart(){
+    localStorage.setItem("sportgear_cart_v1", JSON.stringify(state.cart));
+  }
+  function loadCart(){
+    try{
+      const raw = localStorage.getItem("sportgear_cart_v1");
+      return raw ? JSON.parse(raw) : {};
+    }catch{
+      return {};
+    }
+  }
+
+  function cartCount(){
+    return Object.values(state.cart).reduce((a,b)=>a+b,0);
+  }
+  function cartTotal(){
+    let sum = 0;
+    for(const [id, qty] of Object.entries(state.cart)){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(p) sum += p.price * qty;
+    }
+    return sum;
+  }
+
+  // ---------- Rendering ----------
+  function filteredProducts(){
+    const q = state.q.trim().toLowerCase();
+    const cat = state.chipCategory !== "all" ? state.chipCategory : state.category;
+
+    return PRODUCTS.filter(p=>{
+      if(cat !== "all" && p.category !== cat) return false;
+      if(state.maxPrice != null && p.price > state.maxPrice) return false;
+      if(p.rating < state.minRating) return false;
+      if(q){
+        const hay = (p.name + " " + p.category + " " + p.desc + " " + p.specs.join(" ")).toLowerCase();
+        if(!hay.includes(q)) return false;
+      }
+      return true;
+    });
+  }
+
+  function renderMeta(list){
+    const chipInfo = state.chipCategory !== "all" ? ` (швидкий фільтр: ${state.chipCategory})` : "";
+    byId("resultMeta").textContent = `Знайдено: ${list.length}${chipInfo}`;
+  }
+
+  function renderGrid(){
+    const list = filteredProducts();
+    renderMeta(list);
+
+    const grid = byId("grid");
+    grid.innerHTML = "";
+
+    byId("emptyState").hidden = list.length !== 0;
+
+    for(const p of list){
+      const card = document.createElement("article");
+      card.className = "card";
+
+      const tagLabel = p.tag === "hot" ? "Хіт" : p.tag === "new" ? "Новинка" : "";
+      const tagClass = p.tag === "hot" ? "tag hot" : p.tag === "new" ? "tag new" : "tag";
+
+      card.innerHTML = `
+        <div class="thumb">
+          ${tagLabel ? `<div class="${tagClass}">${tagLabel}</div>` : ""}
+        </div>
+        <div class="content">
+          <div class="titleRow">
+            <h3>${escapeHtml(p.name)}</h3>
+          </div>
+          <div class="meta">
+            <span class="pill">${escapeHtml(p.category)}</span>
+            <span class="pill">Вага: ${escapeHtml(p.weight)}</span>
+            <span class="pill">★ ${p.rating.toFixed(1)}</span>
+          </div>
+          <div class="desc">${escapeHtml(p.desc)}</div>
+
+          <div class="priceRow">
+            <div class="price">${fmt.format(p.price)} ₴</div>
+            <div class="actions">
+              <button class="smallBtn" type="button" data-view="${p.id}">Перегляд</button>
+              <button class="smallBtn primary" type="button" data-add="${p.id}">У кошик</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      grid.appendChild(card);
+    }
+  }
+
+  function renderCart(){
+    byId("cartCount").textContent = String(cartCount());
+    byId("cartTotal").textContent = `${fmt.format(cartTotal())} ₴`;
+
+    const wrap = byId("cartItems");
+    wrap.innerHTML = "";
+
+    const entries = Object.entries(state.cart);
+    if(entries.length === 0){
+      wrap.innerHTML = `<div class="empty">Кошик порожній. Додай товари з каталогу.</div>`;
+      return;
+    }
+
+    for(const [id, qty] of entries){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) continue;
+
+      const item = document.createElement("div");
+      item.className = "cartItem";
+      item.innerHTML = `
+        <div>
+          <h4>${escapeHtml(p.name)}</h4>
+          <div class="small">${escapeHtml(p.category)} • ${fmt.format(p.price)} ₴ за шт.</div>
+        </div>
+        <div class="qtyRow" aria-label="Кількість">
+          <button class="qtyBtn" type="button" data-dec="${id}">−</button>
+          <span style="min-width:22px; text-align:center; font-weight:900">${qty}</span>
+          <button class="qtyBtn" type="button" data-inc="${id}">+</button>
+          <button class="qtyBtn removeBtn" type="button" title="Видалити" data-rem="${id}">✕</button>
+        </div>
+      `;
+      wrap.appendChild(item);
+    }
+  }
+
+  function escapeHtml(str){
+    return String(str)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
+
+  // ---------- Cart actions ----------
+  function addToCart(id, qty=1){
+    state.cart[id] = (state.cart[id] || 0) + qty;
+    if(state.cart[id] <= 0) delete state.cart[id];
+    saveCart();
+    renderCart();
+  }
+  function setQty(id, qty){
+    if(qty <= 0) delete state.cart[id];
+    else state.cart[id] = qty;
+    saveCart();
+    renderCart();
+  }
+  function clearCart(){
+    state.cart = {};
+    saveCart();
+    renderCart();
+  }
+
+  // ---------- Modal ----------
+  function openModal(productId){
+    const p = PRODUCTS.find(x=>x.id===productId);
+    if(!p) return;
+
+    state.modalProductId = productId;
+    byId("mTitle").textContent = p.name;
+    byId("mCategory").textContent = p.category;
+    byId("mWeight").textContent = `Вага: ${p.weight}`;
+    byId("mRating").textContent = `★ ${p.rating.toFixed(1)}`;
+    byId("mDesc").textContent = p.desc;
+    byId("mPrice").textContent = `${fmt.format(p.price)} ₴`;
+
+    const specs = byId("mSpecs");
+    specs.innerHTML = "";
+    for(const s of p.specs){
+      const el = document.createElement("span");
+      el.className = "pill";
+      el.textContent = s;
+      specs.appendChild(el);
+    }
+
+    byId("modalOverlay").setAttribute("aria-hidden","false");
+  }
+  function closeModal(){
+    byId("modalOverlay").setAttribute("aria-hidden","true");
+    state.modalProductId = null;
+  }
+
+  // ---------- Drawer ----------
+  function openCart(){
+    byId("cartDrawer").setAttribute("aria-hidden","false");
+  }
+  function closeCart(){
+    byId("cartDrawer").setAttribute("aria-hidden","true");
+  }
+
+  // ---------- Events ----------
+  function init(){
+    byId("year").textContent = String(new Date().getFullYear());
+
+    // Inputs
+    byId("q").addEventListener("input", (e)=>{
+      state.q = e.target.value;
+      renderGrid();
+    });
+    byId("category").addEventListener("change", (e)=>{
+      state.category = e.target.value;
+      state.chipCategory = "all";
+      syncChips();
+      renderGrid();
+    });
+    byId("maxPrice").addEventListener("input", (e)=>{
+      state.maxPrice = clampNum(e.target.value);
+      renderGrid();
+    });
+    byId("minRating").addEventListener("change", (e)=>{
+      state.minRating = Number(e.target.value);
+      renderGrid();
+    });
+
+    // Chips
+    document.querySelectorAll("[data-chip]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const v = btn.getAttribute("data-chip");
+        state.chipCategory = v;
+        syncChips();
+        renderGrid();
+      });
+    });
+
+    // Grid click delegation
+    byId("grid").addEventListener("click", (e)=>{
+      const viewBtn = e.target.closest("[data-view]");
+      const addBtn  = e.target.closest("[data-add]");
+      if(viewBtn){
+        openModal(viewBtn.getAttribute("data-view"));
+      }
+      if(addBtn){
+        addToCart(addBtn.getAttribute("data-add"), 1);
+        openCart();
+      }
+    });
+
+    // Modal
+    byId("closeModalBtn").addEventListener("click", closeModal);
+    byId("modalOverlay").addEventListener("click", (e)=>{
+      if(e.target === byId("modalOverlay")) closeModal();
+    });
+    byId("mAddBtn").addEventListener("click", ()=>{
+      if(state.modalProductId) addToCart(state.modalProductId, 1);
+      openCart();
+    });
+    byId("mGoCatalogBtn").addEventListener("click", ()=>{
+      closeModal();
+      location.hash = "#catalog";
+    });
+
+    // Cart drawer
+    byId("openCartBtn").addEventListener("click", ()=>{
+      renderCart();
+      openCart();
+    });
+    byId("closeCartBtn").addEventListener("click", closeCart);
+
+    byId("cartItems").addEventListener("click", (e)=>{
+      const inc = e.target.closest("[data-inc]");
+      const dec = e.target.closest("[data-dec]");
+      const rem = e.target.closest("[data-rem]");
+      if(inc){
+        const id = inc.getAttribute("data-inc");
+        addToCart(id, 1);
+      }
+      if(dec){
+        const id = dec.getAttribute("data-dec");
+        addToCart(id, -1);
+      }
+      if(rem){
+        const id = rem.getAttribute("data-rem");
+        setQty(id, 0);
+      }
+    });
+
+    // CTA buttons
+    byId("scrollGuideBtn").addEventListener("click", ()=>{
+      document.querySelector("#guide").scrollIntoView({behavior:"smooth"});
+    });
+
+    // Clear cart
+    byId("clearCartBtn").addEventListener("click", ()=>{
+      clearCart();
+      byId("formStatus").textContent = "Кошик очищено.";
+      setTimeout(()=> byId("formStatus").textContent = "", 2000);
+    });
+
+    // Checkout demo
+    byId("checkoutBtn").addEventListener("click", ()=>{
+      if(cartCount() === 0){
+        alert("Кошик порожній.");
+        return;
+      }
+      alert("Демо-оформлення: у реальному сайті тут була б оплата/заявка.");
+    });
+
+    // Contact form demo
+    byId("contactForm").addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const form = e.currentTarget;
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      // простий демо-вивід
+      byId("formStatus").textContent =
+        `Заявку збережено (демо). Ім'я: ${data.name}, формат: ${data.trip}.`;
+
+      // очищення форми не робимо, щоб користувачу було зручно
+    });
+
+    // ESC to close modal/cart
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "Escape"){
+        closeModal();
+        closeCart();
+      }
+    });
+
+    renderGrid();
+    renderCart();
+  }
+
+  function syncChips(){
+    document.querySelectorAll("[data-chip]").forEach(btn=>{
+      const v = btn.getAttribute("data-chip");
+      btn.setAttribute("aria-pressed", String(state.chipCategory === v));
+    });
+  }
+
+  init();
+</script>
+</body>
+</html>
